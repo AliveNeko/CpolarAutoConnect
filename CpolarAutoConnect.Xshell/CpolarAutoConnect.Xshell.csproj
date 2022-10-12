@@ -11,4 +11,10 @@
       <ProjectReference Include="..\CpolarAutoConnect.Core\CpolarAutoConnect.Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="setting.json5">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>

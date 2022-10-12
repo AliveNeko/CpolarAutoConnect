@@ -1,7 +1,4 @@
-﻿using System.Net;
-using CpolarAutoConnect.Core.Entity;
-using CpolarAutoConnect.Core.Util;
-using HtmlAgilityPack;
+﻿using CpolarAutoConnect.Core.Util;
 
 var pair = await CpolarStatusUtil.GetStatus();
 

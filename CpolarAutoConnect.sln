@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CpolarAutoConnect", "CpolarAutoConnect\CpolarAutoConnect.csproj", "{0067B821-16A0-44B7-85B3-0F1456C9AF98}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CpolarAutoConnect.Core", "CpolarAutoConnect.Core\CpolarAutoConnect.Core.csproj", "{EB907169-70E1-4FDA-8503-9F360E7AFEAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CpolarAutoConnect.Xshell", "CpolarAutoConnect.Xshell\CpolarAutoConnect.Xshell.csproj", "{F0A28639-0A38-4F7F-8B53-AB1EC3E2C2FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,13 +10,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0067B821-16A0-44B7-85B3-0F1456C9AF98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0067B821-16A0-44B7-85B3-0F1456C9AF98}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0067B821-16A0-44B7-85B3-0F1456C9AF98}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0067B821-16A0-44B7-85B3-0F1456C9AF98}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EB907169-70E1-4FDA-8503-9F360E7AFEAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EB907169-70E1-4FDA-8503-9F360E7AFEAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB907169-70E1-4FDA-8503-9F360E7AFEAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB907169-70E1-4FDA-8503-9F360E7AFEAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0A28639-0A38-4F7F-8B53-AB1EC3E2C2FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0A28639-0A38-4F7F-8B53-AB1EC3E2C2FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0A28639-0A38-4F7F-8B53-AB1EC3E2C2FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0A28639-0A38-4F7F-8B53-AB1EC3E2C2FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
