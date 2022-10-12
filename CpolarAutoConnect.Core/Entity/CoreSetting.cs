@@ -4,8 +4,8 @@ namespace CpolarAutoConnect.Core.Entity;
 
 public class CoreSetting
 {
-    public string LoginName { get; set; } = string.Empty;
-    public string Password { get; set; } = string.Empty;
+    public string LoginName { get; set; } = null!;
+    public string Password { get; set; } = null!;
 
     public override string ToString()
     {

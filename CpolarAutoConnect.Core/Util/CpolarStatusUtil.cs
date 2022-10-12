@@ -7,9 +7,9 @@ namespace CpolarAutoConnect.Core.Util;
 
 public static class CpolarStatusUtil
 {
-    public static async Task<(List<string>, List<List<string>>)> GetStatus()
+    public static async Task<List<CpolarTunnel>> GetStatusList()
     {
-        var result = (new List<string>(), new List<List<string>>());
+        var result = new List<CpolarTunnel>();
 
         var coreSetting = SettingUtil.GetSetting<CoreSetting>();
 
@@ -146,9 +146,6 @@ public static class CpolarStatusUtil
                     throw new CpolarException("查找隧道表格失败，请确认是否已建立隧道");
                 }
 
-                List<string> titleList = result.Item1;
-                List<List<string>> valueList = result.Item2;
-
                 var headTrNode =
                     htmlDoc.DocumentNode.SelectSingleNode("//*[@id=\"dashboard\"]/div/div[2]/div[2]/table/thead/tr");
                 if (headTrNode != null && headTrNode.ChildNodes.Count > 0)
@@ -156,7 +153,8 @@ public static class CpolarStatusUtil
                     var thNodes = headTrNode.ChildNodes.Where(s => s.Name == "th");
                     foreach (var thNode in thNodes)
                     {
-                        titleList.Add(thNode.InnerText);
+                        // 这里可以获取到标题
+                        // titleList.Add(thNode.InnerText);
                     }
                 }
 
@@ -165,15 +163,41 @@ public static class CpolarStatusUtil
 
                 foreach (var tr in trNodeEnum)
                 {
-                    var list = new List<string>();
+                    CpolarTunnel dto = new CpolarTunnel();
 
-                    var nodes = tr.ChildNodes.Where(s => s.Name == "td" || s.Name == "th");
-                    foreach (var td in nodes)
+                    var nodes = tr.ChildNodes.Where(s => s.Name == "td" || s.Name == "th").ToList();
+
+                    for (var i = 0; i < nodes.Count; i++)
                     {
-                        list.Add(WebUtility.HtmlDecode(td.InnerText.Trim()));
-                    }
+                        var value = WebUtility.HtmlDecode(nodes[i].InnerText.Trim());
+                        
+                        if (i == 0)
+                        {
+                            dto.Name = value;
+                        }
 
-                    valueList.Add(list);
+                        if (i == 1)
+                        {
+                            dto.Url = value;
+                        }
+
+                        if (i == 2)
+                        {
+                            dto.IP = value;
+                        }
+
+                        if (i == 3)
+                        {
+                            dto.Region = value;
+                        }
+
+                        if (i == 4)
+                        {
+                            dto.CreateTime = value;
+                        }
+                    }
+                    
+                    result.Add(dto);
                 }
             }
             else

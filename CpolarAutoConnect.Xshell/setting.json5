@@ -3,4 +3,6 @@
   loginName: "your loginName",
   // cpolar password
   password: "your password",
+  // xshell executable file location
+  xshellExeLocation: "D:/Tools/Xshell 6/Xshell.exe",
 }
