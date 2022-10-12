@@ -5,4 +5,6 @@
   password: "your password",
   // xshell executable file location
   xshellExeLocation: "D:/Tools/Xshell 6/Xshell.exe",
+  // the defaul tunnel xshell will open
+  defaultTunnelName: "default",
 }
