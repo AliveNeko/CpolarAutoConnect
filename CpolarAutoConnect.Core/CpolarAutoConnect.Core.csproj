@@ -8,14 +8,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="DotnetSpider" Version="5.1.0" />
-    </ItemGroup>
-
-    <ItemGroup>
       <None Remove="setting.json5" />
       <Content Include="setting.json5">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="HtmlAgilityPack" Version="1.11.46" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     </ItemGroup>
 
 </Project>
