@@ -7,6 +7,14 @@ namespace CpolarAutoConnect.Core.Util;
 
 public static class CpolarStatusUtil
 {
+    /// <summary>
+    /// get cpolar tunnel info list
+    /// </summary>
+    /// <returns>cpolar tunnel info list</returns>
+    /// <exception cref="CpolarException">
+    /// threw when every step I can't get the cpolar tunnel info
+    /// like net error, invalid loginName or password and so on...
+    /// </exception>
     public static async Task<List<CpolarTunnel>> GetStatusList()
     {
         var result = new List<CpolarTunnel>();
@@ -15,7 +23,7 @@ public static class CpolarStatusUtil
 
         if (coreSetting == null)
         {
-            throw new CpolarException("找不到登录设定");
+            throw new CpolarException("can't find login setting, please check the setting.json5 file");
         }
 
         const string UrlStatus = "https://dashboard.cpolar.com/status";
@@ -49,8 +57,10 @@ public static class CpolarStatusUtil
 
 
         HttpClient httpClient = new HttpClient(httpClientHandler);
+        
         // 这些可能没啥用，不过以防万一我还是照着chrome的请求写上去了一些
-        httpClient.DefaultRequestHeaders.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36");
+        httpClient.DefaultRequestHeaders.Add("user-agent",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36");
         httpClient.DefaultRequestHeaders.Add("sec-ch-ua-platform", "\"Windows\"");
         httpClient.DefaultRequestHeaders.Add("accept-language", "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7");
 
@@ -99,7 +109,7 @@ public static class CpolarStatusUtil
 
                     if (string.IsNullOrEmpty(cookie.Value))
                     {
-                        throw new CpolarException("获取登录session失败");
+                        throw new CpolarException("read session from set-session failed");
                     }
                     else
                     {
@@ -110,7 +120,7 @@ public static class CpolarStatusUtil
                 }
                 else
                 {
-                    throw new CpolarException("获取set-cookie错误");
+                    throw new CpolarException("can't get set-cookie from the login page");
                 }
 
                 var loginPostRes = await httpClient.PostAsync(UrlLogin, new FormUrlEncodedContent(
@@ -126,7 +136,7 @@ public static class CpolarStatusUtil
                 }
                 else
                 {
-                    throw new CpolarException("登录失败，请检查用户名和密码");
+                    throw new CpolarException("login error, please check loginName and password");
                 }
 
                 statusRes = await httpClient.GetAsync(UrlStatus);
@@ -143,7 +153,7 @@ public static class CpolarStatusUtil
 
                 if (tableNode == null)
                 {
-                    throw new CpolarException("查找隧道表格失败，请确认是否已建立隧道");
+                    throw new CpolarException("find tunnel table failed, please check whether the tunnel is established");
                 }
 
                 var headTrNode =
@@ -170,7 +180,7 @@ public static class CpolarStatusUtil
                     for (var i = 0; i < nodes.Count; i++)
                     {
                         var value = WebUtility.HtmlDecode(nodes[i].InnerText.Trim());
-                        
+
                         if (i == 0)
                         {
                             dto.Name = value;
@@ -196,19 +206,18 @@ public static class CpolarStatusUtil
                             dto.CreateTime = value;
                         }
                     }
-                    
+
                     result.Add(dto);
                 }
             }
             else
             {
-                throw new CpolarException("获取状态失败");
+                throw new CpolarException("get status error");
             }
         }
         catch (HttpRequestException e)
         {
-            Console.WriteLine("请求出错：");
-            Console.WriteLine("错误信息：{0}", e.Message);
+            throw new CpolarException(e.Message);
         }
 
         return result;
