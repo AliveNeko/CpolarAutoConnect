@@ -13,7 +13,7 @@ public static class MessageUtil
     {
 #if Windows
         return MessageBox(new IntPtr(0), text, caption, 0);
-#elif Linux
+#else
         Console.WriteLine(text);
         return 0;
 #endif
