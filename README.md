@@ -14,6 +14,7 @@ dotnet 6
 
 * `CpolarAutoConnect.Core` get tunnel info from html, all platform support
 * `CpolarAutoConnect.Xshell` use the tunnel info from core, auto open xshell and connect ssh.(only windows support) 
+* `CpolarAutoConnect.Schedule` to be continued
 
 ## Manual
 

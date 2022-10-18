@@ -12,6 +12,7 @@ dotnet 6 运行环境
 
 * `CpolarAutoConnect.Core` 爬取web页面的隧道信息，支持所有平台。（可自行编译，或进行二开）
 * `CpolarAutoConnect.Xshell` 使用 Core 爬取的隧道信息自动打开 xshell 并连接，仅支持 windows（貌似 xshell 只支持 windows 来着）
+* `CpolarAutoConnect.Schedule` to be continued
 
 ## 使用说明
 
